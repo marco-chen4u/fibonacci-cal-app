@@ -14,3 +14,10 @@ after_success:
   - docker build -t marcochen/fibonacci-cal-app-nginx ./nginx
   - docker build -t marcochen/fibonacci-cal-app-server ./server
   - docker build -t marcochen/fibonacci-cal-app-worker ./worker
+  # login into Docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # take those images and push to docker hub
+  - docker push marcochen/fibonacci-cal-app-client
+  - docker push marcochen/fibonacci-cal-app-nginx
+  - docker push marcochen/fibonacci-cal-app-server
+  - docker push marcochen/fibonacci-cal-app-worker
